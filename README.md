@@ -71,7 +71,7 @@ Uses the same WmiMonitorID class to retrieve:
 
 #### Screenshot (Work In Progress):
 
-![Work in Progress](screenshots\gui_001.png)
+![Work in Progress](https://github.com/osamacaiser/MonitorTool/blob/main/screenshots/gui_001.png)
 
 ## Requirements
 
