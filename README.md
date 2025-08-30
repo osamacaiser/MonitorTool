@@ -69,6 +69,10 @@ Uses the same WmiMonitorID class to retrieve:
 +-------------------------------------------------------+
 ```
 
+#### Screenshot (Work In Progress):
+
+![Work in Progress](screenshots\gui_001.png)
+
 ## Requirements
 
 - Windows PowerShell 5.1 or PowerShell 7+
