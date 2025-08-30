@@ -52,9 +52,9 @@ Uses the same WmiMonitorID class to retrieve:
 - Supports multiple monitors.
 
 #### Example Usage:
-
+```
 .\test_gui_02.ps1
-
+```
 
 #### Screenshot (conceptual):
 
@@ -69,14 +69,11 @@ Uses the same WmiMonitorID class to retrieve:
 +-------------------------------------------------------+
 ```
 
-Requirements
+## Requirements
 
-Windows PowerShell 5.1 or PowerShell 7+
+- Windows PowerShell 5.1 or PowerShell 7+
+- Windows OS with WMI support (root\wmi namespace must be accessible)
 
-Windows OS with WMI support (root\wmi namespace must be accessible)
-
-Notes
-
-Get-MonitorInfo.ps1 is lightweight and suited for quick scripting or automation.
-
-test_gui_02.ps1 is more user-friendly, designed for IT technicians to view monitor info visually.
+*Notes*
+- *`Get-MonitorInfo.ps1` is lightweight and suited for quick scripting or automation.*
+- *`test_gui_02.ps1` is more user-friendly, designed for IT technicians to view monitor info visually.*
