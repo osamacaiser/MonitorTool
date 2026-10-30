@@ -1,83 +1,100 @@
-# Monitor Info Tools (PowerShell)
+# MonitorTool
 
-This repository contains two PowerShell scripts that retrieve and display information about connected monitors using Windows Management Instrumentation (WMI).
+A lightweight PowerShell utility for retrieving monitor information, including manufacturer, model, and serial number, from connected displays on Windows systems.
 
-## Scripts
+This project is designed as a practical utility for hardware inventory, support workflows, and quick troubleshooting. It includes both a command-line script and a Windows Forms GUI for viewing monitor metadata.
 
-### 1. Get-MonitorInfo.ps1
+## Why this project exists
 
-A command-line script that queries monitor details from the root\wmi namespace using the WmiMonitorID class.
+When supporting workstations or auditing hardware, it is often useful to quickly identify a monitor and its serial number without manually inspecting the device. MonitorTool provides a simple way to query that information directly from Windows WMI.
 
-#### Functionality:
+## Features
 
-Retrieves monitor information via WMI.
+- Query connected monitors using WMI (`root\wmi` / `WmiMonitorID`)
+- Retrieve and clean:
+  - Manufacturer
+  - Model / user-friendly name
+  - Serial number
+- Output as PowerShell objects for scripting and automation
+- GUI version for a more visual, user-friendly experience
+- Works on Windows systems with WMI enabled
 
-Extracts and cleans string data for:
+## Repository contents
 
- - Manufacturer
- - Model (UserFriendlyName)
- - Serial Number
- - Outputs results as a PSCustomObject.
-
-#### Example Usage:
-
-```
- .\Get-MonitorInfo.ps1
- ```
-
-#### Example Output:
-```
-Manufacturer Model         SerialNumber
------------- -----         ------------
-DELL        U2415          ABC123XYZ
-HP          E243           9LM87654
-```
-### 2. test_gui_02.ps1
-
-A Windows Forms GUI application that provides a simple interface to view monitor details.
-
-#### Functionality:
-
-Uses the same WmiMonitorID class to retrieve:
-- Manufacturer
-- Product Name (UserFriendlyName)
-- Serial Number
-- Displays results in a Windows Forms ListView.
-- Includes a button to refresh monitor data dynamically.
-
-#### Features:
-
-- GUI with a resizable form.
-- Table view with columns for Manufacturer, Product Name, and Serial Number.
-- Supports multiple monitors.
-
-#### Example Usage:
-```
-.\test_gui_02.ps1
-```
-
-#### Screenshot (conceptual):
-
-```
-+-------------------------------------------------------+
-|  Monitor Serial Tracker                               |
-+-------------------------------------------------------+
-| Manufacturer | Product Name     | Serial Number       |
-|--------------|------------------|---------------------|
-| DELL         | U2415            | ABC123XYZ           |
-| HP           | E243             | 9LM87654            |
-+-------------------------------------------------------+
-```
-
-#### Screenshot (Work In Progress):
-
-![Work in Progress](https://github.com/osamacaiser/MonitorTool/blob/main/screenshots/gui_001.png)
+- `Get-MonitorInfo.ps1` – command-line script for retrieving monitor details
+- `test_gui_02.ps1` – Windows Forms GUI for viewing monitor details
+- `screenshots/` – interface screenshots and examples
+- `README.md` – project documentation
 
 ## Requirements
 
-- Windows PowerShell 5.1 or PowerShell 7+
-- Windows OS with WMI support (root\wmi namespace must be accessible)
+- Windows 10 / Windows 11
+- PowerShell 5.1 or PowerShell 7+
+- WMI support enabled on the system
 
-*Notes*
-- *`Get-MonitorInfo.ps1` is lightweight and suited for quick scripting or automation.*
-- *`test_gui_02.ps1` is more user-friendly, designed for IT technicians to view monitor info visually.*
+## Quick start
+
+### Command-line version
+
+Run the script from PowerShell:
+
+```powershell
+.\Get-MonitorInfo.ps1
+```
+
+Example output:
+
+```powershell
+Manufacturer Model        SerialNumber
+------------ -----        ------------
+DELL         U2415        ABC123XYZ
+HP           E243         9LM87654
+```
+
+### GUI version
+
+Run the GUI script:
+
+```powershell
+.\test_gui_02.ps1
+```
+
+This opens a simple Windows Forms window that lists each connected monitor and its basic details.
+
+## How it works
+
+The scripts query the `WmiMonitorID` WMI class in the `root\wmi` namespace, which exposes monitor metadata including manufacturer, model, and serial number identifiers. The scripts then convert the raw byte arrays into readable strings and format them for output.
+
+## Example output
+
+```powershell
+@{
+  Manufacturer = 'DELL'
+  Model        = 'U2415'
+  SerialNumber = 'ABC123XYZ'
+}
+```
+
+## Screenshot
+
+![MonitorTool GUI](./screenshots/gui_001.png)
+
+## Current status
+
+This project is a small but useful personal utility focused on a single problem: identifying monitor hardware details quickly and reliably on Windows systems.
+
+## Future improvements
+
+Potential enhancements for a more polished portfolio version include:
+
+- CSV/JSON export support
+- Better parameter validation and error handling
+- Remote machine monitoring support
+- PowerShell module packaging
+- Automated tests and CI checks
+- Improved GUI polish and filtering
+
+## Notes
+
+This project is intentionally focused and easy to run, making it a good example of a practical Windows automation utility built with PowerShell.
+
