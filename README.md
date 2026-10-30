@@ -117,6 +117,10 @@ This project can evolve into a stronger portfolio asset with future enhancements
 - automated tests and CI validation
 - more polished GUI filtering and reporting
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 ## Notes
 
 This project is best viewed as a useful, low-complexity automation tool rather than a large application. Its strength is in solving a real problem clearly and efficiently with minimal overhead.
