@@ -1,38 +1,59 @@
 # MonitorTool
 
-A lightweight PowerShell utility for retrieving monitor information, including manufacturer, model, and serial number, from connected displays on Windows systems.
+A Windows PowerShell utility for identifying connected monitors and retrieving hardware details such as manufacturer, model, and serial number.
 
-This project is designed as a practical utility for hardware inventory, support workflows, and quick troubleshooting. It includes both a command-line script and a Windows Forms GUI for viewing monitor metadata.
+MonitorTool is a small but practical project built to simplify monitor inventory, troubleshooting, and asset tracking on Windows systems. It uses WMI to query monitor metadata and presents the results in a clean, readable format.
 
-## Why this project exists
+## Overview
 
-When supporting workstations or auditing hardware, it is often useful to quickly identify a monitor and its serial number without manually inspecting the device. MonitorTool provides a simple way to query that information directly from Windows WMI.
+Many support and IT workflows require quickly identifying a monitor’s model or serial number without manually inspecting the hardware. This utility fills that gap by reading monitor information directly from the system.
+
+The project currently includes:
+- a lightweight command-line script for automation and scripting workflows
+- a simple Windows Forms GUI for quick manual inspection
 
 ## Features
 
-- Query connected monitors using WMI (`root\wmi` / `WmiMonitorID`)
-- Retrieve and clean:
-  - Manufacturer
-  - Model / user-friendly name
-  - Serial number
-- Output as PowerShell objects for scripting and automation
-- GUI version for a more visual, user-friendly experience
-- Works on Windows systems with WMI enabled
+- Query connected monitors using the Windows WMI API
+- Retrieve:
+  - manufacturer
+  - model / friendly name
+  - serial number
+- Output results as PowerShell objects for further scripting
+- Offer a GUI-based interface for quick review
+- Work with standard Windows PowerShell environments
 
-## Repository contents
+## Why this project exists
 
-- `Get-MonitorInfo.ps1` – command-line script for retrieving monitor details
-- `test_gui_02.ps1` – Windows Forms GUI for viewing monitor details
-- `screenshots/` – interface screenshots and examples
-- `README.md` – project documentation
+This project demonstrates a practical use case for Windows automation:
+- identifying hardware details without opening the device
+- reducing manual troubleshooting effort
+- supporting hardware audits and inventory checks
+- creating a reusable utility for support workflows
+
+## Repository structure
+
+- `Get-MonitorInfo.ps1` — command-line script for retrieving monitor metadata
+- `test_gui_02.ps1` — Windows Forms GUI version for user-friendly display
+- `screenshots/` — UI examples and screenshots
+- `README.md` — project documentation
 
 ## Requirements
 
-- Windows 10 / Windows 11
+- Windows 10 or Windows 11
 - PowerShell 5.1 or PowerShell 7+
-- WMI support enabled on the system
+- Windows Management Instrumentation (WMI) enabled
 
-## Quick start
+## Installation
+
+Clone the repository:
+
+```powershell
+git clone https://github.com/osamacaiser/MonitorTool.git
+cd MonitorTool
+```
+
+## Usage
 
 ### Command-line version
 
@@ -51,21 +72,23 @@ DELL         U2415        ABC123XYZ
 HP           E243         9LM87654
 ```
 
+This script returns one object per monitor and can be used in further automation or exported to CSV or JSON if extended.
+
 ### GUI version
 
-Run the GUI script:
+Launch the graphical interface:
 
 ```powershell
 .\test_gui_02.ps1
 ```
 
-This opens a simple Windows Forms window that lists each connected monitor and its basic details.
+This opens a Windows Forms window showing the monitor list and basic metadata in a table.
 
 ## How it works
 
-The scripts query the `WmiMonitorID` WMI class in the `root\wmi` namespace, which exposes monitor metadata including manufacturer, model, and serial number identifiers. The scripts then convert the raw byte arrays into readable strings and format them for output.
+The project uses the `WmiMonitorID` WMI class in the `root\wmi` namespace. This class exposes monitor metadata, including manufacturer and serial information. The script converts the raw WMI byte arrays into readable strings and outputs them in a clean format.
 
-## Example output
+## Example object output
 
 ```powershell
 @{
@@ -81,20 +104,19 @@ The scripts query the `WmiMonitorID` WMI class in the `root\wmi` namespace, whic
 
 ## Current status
 
-This project is a small but useful personal utility focused on a single problem: identifying monitor hardware details quickly and reliably on Windows systems.
+MonitorTool is a focused utility designed to solve a very specific problem: identifying monitor hardware information quickly and reliably on Windows systems. It is intentionally simple, easy to run, and practical for real-world support and inventory tasks.
 
-## Future improvements
+## Potential improvements
 
-Potential enhancements for a more polished portfolio version include:
-
-- CSV/JSON export support
-- Better parameter validation and error handling
-- Remote machine monitoring support
-- PowerShell module packaging
-- Automated tests and CI checks
-- Improved GUI polish and filtering
+This project can evolve into a stronger portfolio asset with future enhancements such as:
+- CSV export support
+- JSON output support
+- remote workstation monitoring
+- improved parameter validation and error handling
+- modular PowerShell structure
+- automated tests and CI validation
+- more polished GUI filtering and reporting
 
 ## Notes
 
-This project is intentionally focused and easy to run, making it a good example of a practical Windows automation utility built with PowerShell.
-
+This project is best viewed as a useful, low-complexity automation tool rather than a large application. Its strength is in solving a real problem clearly and efficiently with minimal overhead.
